@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Telegram Light Theme (Default) */
+  --tg-bg: 240 5% 96%;           /* #f4f4f5 */
+  --tg-sidebar-bg: 0 0% 100%;    /* #ffffff */
+  --tg-text: 0 0% 0%;            /* #000000 */
+  --tg-text-secondary: 210 5% 60%; /* #999999 */
+  --tg-border: 220 13% 91%;      /* #e4e4e5 */
+  
+  --tg-accent: 210 82% 56%;      /* #3390ec */
+  --tg-accent-hover: 210 82% 50%;
+  
+  --tg-bubble-self: 88 50% 93%;  /* #eeffdb */
+  --tg-bubble-other: 0 0% 100%;  /* #ffffff */
+  
+  --tg-online: 142 71% 45%;      /* #34c759 */
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+.dark {
+  /* Telegram Dark Theme (K-Version) */
+  --tg-bg: 215 41% 9%;           /* #0e1621 */
+  --tg-sidebar-bg: 210 29% 13%;  /* #17212b */
+  --tg-text: 0 0% 100%;          /* #ffffff */
+  --tg-text-secondary: 211 17% 52%; /* #708499 */
+  --tg-border: 215 41% 9%;       /* #0e1621 */
+  
+  --tg-accent: 200 79% 53%;      /* #27a7e7 */
+  --tg-accent-hover: 200 79% 48%;
+  
+  --tg-bubble-self: 210 47% 32%; /* #2b5278 */
+  --tg-bubble-other: 211 36% 15%; /* #182533 */
+  
+  --tg-online: 142 71% 45%;      /* #34c759 */
+}
+
+@layer base {
+  body {
+    @apply bg-[hsl(var(--tg-bg))] text-[hsl(var(--tg-text))] font-sans antialiased overflow-hidden;
+    font-family: var(--font-sans);
+  }
+}
+
+@layer components {
+  /* Custom Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-black/20 dark:bg-white/10 rounded-full hover:bg-black/30 dark:hover:bg-white/20 transition-colors;
+  }
+
+  /* Ripple Effect Container */
+  .ripple-container {
+    @apply relative overflow-hidden isolate;
+  }
+  
+  .ripple {
+    @apply absolute rounded-full bg-current opacity-10 pointer-events-none transform scale-0 animate-ripple;
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.animate-ripple {
+  animation: ripple 0.6s linear;
+}
+
+/* Utilities */
+.glass-panel {
+  @apply bg-[hsl(var(--tg-sidebar-bg))] shadow-lg border-r border-[hsl(var(--tg-border))];
+}
+
+.chat-bg-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 0h200v200H0V0zm200 200h200v200H200V200z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+[data-replit-banner],
+#replit-banner,
+.replit-banner {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
